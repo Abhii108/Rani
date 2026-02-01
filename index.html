@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>For Rani 💖</title>
+
+<style>
+body {
+margin: 0;
+height: 100vh;
+background: linear-gradient(135deg, #ffd6e0, #fff2c6);
+font-family: system-ui, sans-serif;
+overflow: hidden;
+}
+
+/* Center card */
+.card {
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+background: white;
+padding: 24px;
+border-radius: 18px;
+width: min(90vw, 360px);
+text-align: center;
+box-shadow: 0 15px 40px rgba(0,0,0,.15);
+}
+
+h2 { margin-bottom: 16px; }
+
+/* Buttons */
+#yes {
+background: #ff4d88;
+color: white;
+border: none;
+border-radius: 999px;
+padding: 12px 28px;
+font-size: 16px;
+cursor: pointer;
+}
+
+/* Yellow teasing box */
+#tease {
+position: absolute;
+background: #ffe680;
+color: #333;
+padding: 12px 18px;
+border-radius: 16px;
+font-size: 15px;
+cursor: pointer;
+max-width: 240px;
+box-shadow: 0 10px 25px rgba(0,0,0,.2);
+}
+
+/* Final screen */
+#final {
+display: none;
+position: fixed;
+inset: 0;
+background: radial-gradient(circle, #fff6f9, #ffd1e8);
+text-align: center;
+}
+
+#final h1 {
+margin-top: 40px;
+color: #d63384;
+}
+
+#final img {
+max-width: 90%;
+border-radius: 20px;
+margin-top: 20px;
+}
+
+/* Fireworks */
+.firework {
+position: absolute;
+font-size: 28px;
+animation: boom 1.2s ease-out forwards;
+}
+
+@keyframes boom {
+from { transform: scale(0); opacity: 1; }
+to { transform: scale(2); opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card" id="card">
+<h2>Rani, will you be my Valentine? 💖</h2>
+<button id="yes">Yes</button>
+</div>
+
+<div id="tease"></div>
+
+<div id="final">
+<h1>💖 I knew you’d say yes, Rani 💖<br>You made me the happiest</h1>
+
+<!-- Naruto & Hinata image (replace if you want another one) -->
+<img src="https://i.imgur.com/9JYwFQk.jpg" alt="Naruto and Hinata">
+
+</div>
+
+<script>
+const sentences = [
+"No.",
+"Why not?",
+"Are you sure?",
+"You’re testing my patience 😏",
+"Come on, Rani",
+"That didn’t sound convincing",
+"Think again 😉",
+"You’re enjoying this, aren’t you?",
+"Your heart says yes",
+"Don’t overthink it",
+"Just one honest click",
+"Still resisting?",
+"This is getting interesting",
+"You know what you want",
+"Be brave 😌",
+"Even destiny is waiting",
+"You can stop anytime",
+"Are you really sure?",
+"One click changes everything",
+"I’m waiting patiently",
+"You’re smiling right now",
+"Why are you running?",
+"Don’t fight your feelings",
+"Almost there",
+"Okay now I’m asking",
+"Pretty please 💕",
+"Last few chances",
+"You already decided",
+"Don’t make me wait",
+"I knew you wouldn’t say no forever"
+];
+
+let i = 0;
+const tease = document.getElementById("tease");
+const yes = document.getElementById("yes");
+const card = document.getElementById("card");
+const final = document.getElementById("final");
+
+function moveTease() {
+tease.textContent = sentences[i];
+i = (i + 1) % sentences.length;
+
+const x = Math.random() * (window.innerWidth - tease.offsetWidth);
+const y = Math.random() * (window.innerHeight - tease.offsetHeight);
+
+tease.style.left = x + "px";
+tease.style.top = y + "px";
+}
+
+tease.addEventListener("click", moveTease);
+moveTease();
+
+yes.addEventListener("click", () => {
+card.style.display = "none";
+tease.style.display = "none";
+final.style.display = "block";
+
+for (let j = 0; j < 20; j++) {
+const f = document.createElement("div");
+f.className = "firework";
+f.textContent = "🎆";
+f.style.left = Math.random() * 100 + "%";
+f.style.top = Math.random() * 100 + "%";
+document.body.appendChild(f);
+setTimeout(() => f.remove(), 1200);
+}
+});
+</script>
+
+</body>
+</html>
